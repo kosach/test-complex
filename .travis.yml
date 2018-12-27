@@ -2,16 +2,16 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t kosach/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kosmach/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run kosach/react-test npm test -- --coverage
+  - docker run kosmach/react-test npm test -- --coverage
 after_success:
-  - docker build -t kosach/multi-client ./client
-  - docker build -t kosach/multi-nginx ./nginx
-  - docker build -t kosach/multi-server ./server
-  - docker build -t kosach/multi-worker ./worker
+  - docker build -t kosmach/multi-client ./client
+  - docker build -t kosmach/multi-nginx ./nginx
+  - docker build -t kosmach/multi-server ./server
+  - docker build -t kosmach/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push kosach/multi-client
-  - docker push kosach/multi-nginx
-  - docker push kosach/multi-server
-  - docker push kosach/multi-worker
+  - docker push kosmach/multi-client
+  - docker push kosmach/multi-nginx
+  - docker push kosmach/multi-server
+  - docker push kosmach/multi-worker
